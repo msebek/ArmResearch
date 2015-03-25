@@ -1,0 +1,22 @@
+This is Matlab code for testing, fitting, and running a predictive covariance
+model. 
+
+For more info, contact:
+
+Humphrey Hu
+humhu@cmu.edu
+Carnegie Mellon University
+Robotics Institute
+Jan 2015
+
+The code organization is as follows:
+
+Core Code:
+regression - Code for fitting and evaluating various covariance models
+quaternion - Basic quaternion implementations
+utils - Utility code, i.e. estimators and others
+
+Experiments:
+experiment3D - Experimental AprilTag test code
+experimentBeacon - 2D range-bearing test code
+experimentQuad - Experimental quadrotor test code

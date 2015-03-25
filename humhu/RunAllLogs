@@ -1,0 +1,17 @@
+#!/bin/bash
+
+if [ $# -ne 2 ]; then
+    echo "Please specify log and destination directories."
+    exit 1
+fi
+
+LOGS=$(ls $1*.clf)
+echo $(ls $1*.clf)
+
+for FILE in $LOGS; do
+    NAME=${FILE%.clf}
+    RESULTS="$2${NAME##*/}.txt"
+    echo "Processing log file $FILE. Will save results to $RESULTS"
+    ./build/workflow/ProcessLog $FILE $RESULTS
+done
+
