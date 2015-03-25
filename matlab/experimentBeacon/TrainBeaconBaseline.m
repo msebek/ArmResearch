@@ -1,0 +1,1 @@
+function [] = TrainBeaconBaseline( matNames )

@@ -1,0 +1,33 @@
+include_directories(${CovReg_SOURCE_DIR}/src/taskpool)
+
+SET(SOURCES
+    ${SOURCES}
+    taskpool/ICPFactory.cc
+    taskpool/ScanMatcherFactory.cc
+    taskpool/ScanMatchTask.cc
+    taskpool/ScanMatchTaskFactory.cc
+    taskpool/Task.cc
+    taskpool/TaskLogger.cc
+    taskpool/TaskMapper.cc
+    taskpool/TaskPool.cc
+    taskpool/ThreadsafeClass.cc
+    taskpool/WorkerClass.cc
+    taskpool/WrapperTask.cc
+    PARENT_SCOPE
+)
+
+SET(HEADERS
+    ${HEADERS}
+    taskpool/Factory.h
+    taskpool/ICPFactory.h
+    taskpool/ScanMatcherFactory.h
+    taskpool/ScanMatchTask.h
+    taskpool/ScanMatchTaskFactory.h
+    taskpool/Task.h
+    taskpool/TaskLogger.h
+    taskpool/TaskMapper.h
+    taskpool/TaskPool.h
+    taskpool/ThreadsafeClass.h
+    taskpool/WorkerClass.h
+    taskpool/WrapperTask.h
+)
