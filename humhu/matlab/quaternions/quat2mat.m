@@ -1,7 +1,9 @@
 % QUAT2MAT - Turns quaternions into a rotation matrix
 % Usage:
-%  R = quat2mat(q) - q should be in [x; y; z; q] format. q can also be a matrix
-%  of quaternions. R will be a 3 x 3 x N set of rotation matrices.
+%  R = quat2mat(q) - q should be in [x; y; z; w] format. 
+%     q can also be a matrix of quaternions. 
+%     R will be a 3 x 3 x N set of rotation matrices.
+%  
 function [R] = quat2mat(q)
 N = size(q,2);
 

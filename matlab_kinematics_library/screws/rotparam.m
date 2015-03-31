@@ -10,9 +10,9 @@ function [omega theta] = rotparam(r)
 % $Id: rotparam.m,v 1.1 2009-03-17 16:40:18 bradleyk Exp $
 % Copyright (C) 2005, by Brad Kratochvil
 
-  if ~isrot(r),
-    error('SCREWS:rotparam', 'T must be a rotation');
-  end
+  %if ~isrot(r),
+  %  error('SCREWS:rotparam', 'T must be a rotation');
+  %end
   
   t = (trace(r)-1)/2;
   
