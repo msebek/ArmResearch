@@ -12,16 +12,36 @@ load(filename, 'aprilposes', 'armposes');
 % All observed april poses; rows are observations
 % These are the keys (as strings)
 
-%first = aprilposes
-%second = 
+first_april = aprilposes(:, 1:2:end); % odd
+second_april = aprilposes(:, 2:2:end); % even
+first_arm = armposes(:, 1:2:end); % odd
+second_arm = armposes(:, 2:2:end); % even
 
 % Think about different averaging functions
 
-knn_search_object = createns(aprilposes', 'Distance', 'euclidean', ...
+first_search = createns(first_april', 'Distance', 'euclidean', ...
         'NSMethod', 'kdtree');
 
-arm_estimate = interpolate_measurement(knn_search_object, ...
-        aprilposes, armposes, 3, aprilposes(:, 2));
+second_search = createns(second_april', 'Distance', 'euclidean', ...
+        'NSMethod', 'kdtree');
+
+   
+error = zeros(1, size(aprilposes, 2));
+% Check out error between data sets.
+for i=1:size(second_april, 2)
+    num_neighbors = 10;
+    new_measurement = second_april(:, i);
+    arm_estimate = interpolate_measurement(first_search, ...
+        first_april, first_arm, num_neighbors, new_measurement);
+    
+    % Check this against ground truth
+    error_curr = arm_estimate - second_arm(:, i);
+    error(i) = norm(error_curr); 
+    
+    
+end
+
+
     
     
     

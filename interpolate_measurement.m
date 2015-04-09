@@ -33,10 +33,12 @@ function [arm_estimate] = interpolate_measurement(knn_search_object, ...
     %       covariance matrix. 
     %  (TODO the covariance can be tuned to get better results.)
     mean = april_measurement(4:9, :)'
-    cov = eye(6) / 5000;
+    cov = eye(6);
+    cov(1:3, 1:3) = cov(1:3, 1:3) / 1000;
+    cov(4:6, 4:6) = cov(4:6, 4:6) / 2000;
     measurements = k_april_poses(4:9, :)'
     k_arm_pose_weights = mvnpdf(measurements, mean, cov)';
-    k_arm_pose_weights = k_arm_pose_weights / sum(k_arm_pose_weights);
+    k_arm_pose_weights = k_arm_pose_weights / sum(k_arm_pose_weights)
     k_weighted_arm_poses = zeros(7,1);
     for i = 1:size(k_arm_pose_weights, 2)
        k_weighted_arm_poses = k_weighted_arm_poses + ...
