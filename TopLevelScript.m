@@ -2,6 +2,10 @@
 filename = 'arm_april_data_second_set';
 load(filename, 'aprilposes', 'armposes');
 
+% TODO convert April measurements into q1...q4.
+
+% TODO convert arm measurements to remove the arm.
+
 % Process them. 
 
 
@@ -26,23 +30,19 @@ second_search = createns(second_april', 'Distance', 'euclidean', ...
         'NSMethod', 'kdtree');
 
    
-error = zeros(1, size(aprilposes, 2));
+error = zeros(size(armposes));
 % Check out error between data sets.
 for i=1:size(second_april, 2)
-    num_neighbors = 10;
+    num_neighbors = 200;
     new_measurement = second_april(:, i);
     arm_estimate = interpolate_measurement(first_search, ...
         first_april, first_arm, num_neighbors, new_measurement);
     
     % Check this against ground truth
     error_curr = arm_estimate - second_arm(:, i);
-    error(i) = norm(error_curr); 
+    error(:, i) = error_curr; 
     
     
 end
 
-
-    
-    
-    
-arm_estimate;
+sum(abs(error), 2) / size(error, 2)
